@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProBook Service Portal (PoC)</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.10/dist/ext/sse.js"></script>
+    
+    <link href="/static/css/styles.css" rel="stylesheet">
+</head>
+<body class="flex h-screen w-full overflow-hidden bg-gray-50 text-gray-900 font-sans">
+
+    <div id="left-pane" class="w-[60%] flex flex-col h-full overflow-y-auto bg-white relative">
+        {% include 'components/nav.html' %}
+        
+        <main id="main-content" class="flex-grow p-8">
+            {% block content %}{% endblock %}
+        </main>
+
+        {% include 'components/login_modal.html' %}
+
+        {% include 'components/chat_widget.html' %}
+    </div>
+
+    <div id="right-pane" class="w-[40%] h-full bg-[#0f172a] text-slate-200 border-l border-slate-700 flex flex-col shadow-2xl overflow-y-auto scrollbar-hide">
+        {% include 'right/dashboard.html' %}
+    </div>
+
+    <script src="/static/js/behavior.js"></script> <script src="/static/js/chat.js"></script>     </body>
+</html>

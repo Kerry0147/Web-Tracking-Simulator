@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">Warranty Check</h1>
+
+    {% if logged_in %}
+    <div class="mb-10">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">Your Registered Devices</h2>
+        <div class="grid gap-6">
+            {% for device in devices %}
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div class="flex items-center gap-4">
+                    <div class="h-16 w-16 bg-gray-100 rounded-lg flex items-center justify-center text-3xl">
+                        {% if "Laptop" in device.product_name %}💻{% else %}📱{% endif %}
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 text-lg">{{ device.product_name }}</h3>
+                        <div class="text-sm text-gray-500 font-mono">SN: {{ device.serial_number }}</div>
+                        <div class="text-sm text-gray-400">Purchased: {{ device.purchase_date }}</div>
+                    </div>
+                </div>
+
+                <div class="mt-4 md:mt-0 text-right">
+                    {% if device.warranty.status == 'Active' %}
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-green-100 text-green-800">
+                            ✅ Active
+                        </span>
+                        <div class="text-xs text-gray-500 mt-1">Expires: {{ device.warranty.end_date }}</div>
+                    {% else %}
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-red-100 text-red-800">
+                            ❌ Expired
+                        </span>
+                        <div class="text-xs text-red-500 mt-1 cursor-pointer hover:underline">Extend Warranty ></div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="border-t border-gray-200 my-8"></div>
+    {% endif %}
+
+    <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+        <h2 class="text-lg font-semibold text-gray-800 mb-2">Check Another Device</h2>
+        <p class="text-sm text-gray-500 mb-4">Enter the serial number found on the bottom of your device.</p>
+        
+        <form hx-post="/api/warranty-lookup" hx-target="#search-result">
+            <div class="flex gap-3">
+                <input type="text" placeholder="e.g. GX7500-2024-..." class="flex-1 rounded-lg border-gray-300 p-3 border focus:ring-blue-500 focus:border-blue-500">
+                <button type="submit" class="bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800">Check</button>
+            </div>
+        </form>
+        <div id="search-result" class="mt-4"></div>
+    </div>
+</div>
+{% endblock %}

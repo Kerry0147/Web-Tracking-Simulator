@@ -1,0 +1,53 @@
+<div class="bg-slate-800 rounded-lg p-4 border border-slate-700">
+    <h3 class="text-slate-400 text-xs font-bold uppercase mb-3">🗺️ Journey Timeline</h3>
+    
+    <div id="timeline-container" class="flex overflow-x-auto pb-4 space-x-2">
+        {% if session.events|length == 0 %}
+            <div class="text-xs text-slate-500 italic">Waiting for activity...</div>
+        {% else %}
+            {% for event in session.events %}
+                {% if event.type == 'page_view' %}
+                    {# Calculate Dwell Time #}
+                    {% set ns = namespace(dwell='Active') %}
+                    {% for next_event in session.events %}
+                        {% if next_event.type == 'page_leave' and next_event.page == event.page and next_event.timestamp > event.timestamp and ns.dwell == 'Active' %}
+                            {% set ns.dwell = next_event.dwell_time | round(1) ~ 's' %}
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="flex-shrink-0 flex flex-col items-center w-24 relative">
+                        {% if not loop.last %}
+                        <div class="absolute top-1.5 left-1/2 w-full h-0.5 bg-slate-600 -z-10"></div>
+                        {% endif %}
+                        
+                        <div class="h-3 w-3 rounded-full border-2 border-slate-800 
+                            {% if '/troubleshooting' in event.page %}bg-blue-500
+                            {% elif '/warranty' in event.page %}bg-purple-500
+                            {% elif '/case' in event.page %}bg-orange-500
+                            {% else %}bg-gray-400{% endif %}">
+                        </div>
+                        
+                        <div class="mt-2 text-[10px] text-slate-300 font-medium text-center truncate w-full">
+                            {% if event.page == '/' %}Home
+                            {% else %}{{ event.page.split('/')[-1] | truncate(12) }}
+                            {% endif %}
+                        </div>
+                        
+                        <div class="text-[9px] {% if ns.dwell == 'Active' %}text-green-400 font-bold animate-pulse{% else %}text-slate-500{% endif %}">
+                            {{ ns.dwell }}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <script>
+        (function() {
+            const container = document.getElementById('timeline-container');
+            if(container) {
+                container.scrollLeft = container.scrollWidth;
+            }
+        })();
+    </script>
+</div>

@@ -1,0 +1,51 @@
+<div class="bg-slate-800 rounded-lg p-4 border border-slate-700">
+    <div class="flex justify-between items-center mb-3">
+        <h3 class="text-slate-400 text-xs font-bold uppercase">📅 Historical Sessions</h3>
+        
+        {% if classification.segment.value == 'AT_RISK' %}
+        <span class="bg-red-900/50 text-red-300 text-[10px] px-2 py-0.5 rounded border border-red-800 animate-pulse">
+            ⚠️ RECURRENT ISSUE
+        </span>
+        {% endif %}
+    </div>
+
+    {% if user %}
+        <div class="overflow-hidden rounded border border-slate-700">
+            <table class="w-full text-left text-xs text-slate-300">
+                <thead class="bg-slate-900 text-slate-500">
+                    <tr>
+                        <th class="p-2">Date</th>
+                        <th class="p-2">Intent</th>
+                        <th class="p-2">Result</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-700">
+                    {% for sess in history.sessions %}
+                    <tr class="hover:bg-slate-700/50">
+                        <td class="p-2">{{ sess.date.split(' ')[0] }}</td>
+                        <td class="p-2">
+                            <span class="{% if sess.primary_intent.value == 'TROUBLESHOOTING' %}text-blue-400{% endif %}">
+                                {{ sess.primary_intent.value[:4] }}..
+                            </span>
+                        </td>
+                        <td class="p-2">
+                            {% if 'CASE' in sess.outcome %}
+                                <span class="text-orange-400">Case</span>
+                            {% else %}
+                                <span class="text-gray-500">-</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-2 text-[10px] text-slate-500 italic text-center">
+            Found {{ history.sessions|length }} past sessions
+        </div>
+    {% else %}
+        <div class="text-center py-4 text-xs text-slate-500 italic border border-dashed border-slate-700 rounded">
+            Login to view session history
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,48 @@
+<div id="chat-widget-container" class="fixed bottom-6 right-[42%] z-50 flex flex-col items-end space-y-4">
+
+    <div id="chat-window" class="hidden w-80 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col h-96 transition-all transform origin-bottom-right">
+        
+        <div class="bg-slate-900 p-4 flex justify-between items-center text-white">
+            <div class="flex items-center gap-2">
+                <div id="agent-status-dot" class="h-2 w-2 rounded-full bg-green-400"></div>
+                <div>
+                    <h3 id="chat-title" class="text-sm font-bold">AI Assistant</h3>
+                    <p id="chat-subtitle" class="text-[10px] text-slate-400">Automated Support</p>
+                </div>
+            </div>
+            <button onclick="toggleChat()" class="text-slate-400 hover:text-white">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div id="escalation-banner" class="hidden bg-yellow-50 p-2 text-xs text-yellow-800 border-b border-yellow-100 flex justify-between items-center">
+            <span>Talk to a human?</span>
+            <button onclick="escalateChat()" class="underline font-bold hover:text-yellow-900">Connect Now</button>
+        </div>
+
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-gray-50 space-y-3 text-sm">
+            <div class="flex items-start gap-2">
+                <div class="h-6 w-6 rounded-full bg-slate-200 flex items-center justify-center text-xs">🤖</div>
+                <div class="bg-white p-2 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-gray-800 max-w-[85%]">
+                    Hello! I'm your ProBook virtual assistant. How can I help you today?
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3 bg-white border-t border-gray-100">
+            <form onsubmit="sendMessage(event)" class="flex gap-2">
+                <input type="text" id="chat-input" placeholder="Type a message..." class="flex-1 text-sm border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 border">
+                <button type="submit" class="bg-blue-600 text-white rounded-lg p-2 hover:bg-blue-700 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <button id="chat-toggle-btn" onclick="toggleChat()" class="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-5 py-3 shadow-lg flex items-center gap-2 transition-transform hover:scale-105">
+        <span class="text-xl">💬</span>
+        <span class="font-medium text-sm">Need Help?</span>
+        <span id="chat-badge" class="hidden absolute -top-1 -right-1 h-4 w-4 bg-red-500 rounded-full border-2 border-white"></span>
+    </button>
+
+</div>

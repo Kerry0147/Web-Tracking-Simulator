@@ -1,0 +1,46 @@
+{% set state = nba.state %}
+{% set color = 'green' %}
+{% set icon = '👁️' %}
+
+{% if state.value == 'CRITICAL' %}
+    {% set color = 'red' %}
+    {% set icon = '🚨' %}
+{% elif state.value == 'OPPORTUNITY' %}
+    {% set color = 'yellow' %}
+    {% set icon = '💡' %}
+{% endif %}
+
+<div id="nba-card" class="bg-slate-800 rounded-lg p-4 border border-{{ color }}-500/50 shadow-lg transition-all duration-500 ease-in-out {% if state.value == 'CRITICAL' %}animate-pulse bg-red-900/20{% endif %}">
+    <div class="flex items-start gap-3">
+        <div class="text-2xl mt-1">{{ icon }}</div>
+        <div>
+            <h3 class="text-{{ color }}-400 font-bold text-sm uppercase mb-1">{{ state.value }}</h3>
+            <p class="text-slate-300 text-sm leading-relaxed font-medium">
+                {{ nba.action_text }}
+            </p>
+        </div>
+    </div>
+
+    {% if state.value == 'CRITICAL' %}
+    <script>
+        setTimeout(() => {
+            // Check global flag to see if we already popped for this session
+            if (typeof openChat === 'function' && !window.hasAutoOpened) {
+                console.log("🚨 Dashboard CRITICAL: Forcing Chat Open (Once)");
+                openChat();
+                window.hasAutoOpened = true; // Mark as opened so it doesn't loop
+                
+                const container = document.getElementById('chat-messages');
+                if (container && !container.innerText.includes("trouble")) {
+                    appendMessage("I noticed you seem to be having a recurring issue. Can I assist you directly?", 'bot');
+                }
+            }
+        }, 1000);
+    </script>
+    {% else %}
+    <script>
+        // Reset flag when we go back to normal so it can trigger again next time
+        window.hasAutoOpened = false;
+    </script>
+    {% endif %}
+</div>

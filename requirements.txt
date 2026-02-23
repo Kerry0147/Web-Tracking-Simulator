@@ -1,0 +1,10 @@
+pydantic
+fastapi
+uvicorn[standard]
+jinja2
+python-multipart
+sse-starlette
+httpx
+python-dotenv
+itsdangerous
+anthropic

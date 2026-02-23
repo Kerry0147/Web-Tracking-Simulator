@@ -1,0 +1,302 @@
+{
+  "customer": {
+    "id": "CUST-2024-0847",
+    "name": "Sarah Chen",
+    "email": "sarah.chen@email.com",
+    "tier": "Gold",
+    "customer_since": "2024-12-10",
+    "lifetime_value": 3249.97,
+    "location": "Seattle, WA",
+    "avatar_url": "/static/images/avatars/sarah.jpg"
+  },
+  "login_credentials": {
+    "email": "sarah.chen@email.com",
+    "password": "demo123",
+    "customer_id": "CUST-2024-0847"
+  },
+  "devices": [
+    {
+      "id": "DEV-GX7500-A1847",
+      "customer_id": "CUST-2024-0847",
+      "product_name": "ProBook GX-7500 Pro Gaming Laptop",
+      "serial_number": "GX7500-2024-A1847",
+      "purchase_date": "2024-12-15",
+      "purchase_price": 2499.99,
+      "image_url": "/static/images/products/gx7500.jpg"
+    },
+    {
+      "id": "DEV-TX1000-B2201",
+      "customer_id": "CUST-2024-0847",
+      "product_name": "ProBook TX-1000 Tablet",
+      "serial_number": "TX1000-2025-B2201",
+      "purchase_date": "2025-06-20",
+      "purchase_price": 749.98,
+      "image_url": "/static/images/products/tx1000.jpg"
+    }
+  ],
+  "warranties": [
+    {
+      "id": "WRN-2024-0847-01",
+      "device_id": "DEV-GX7500-A1847",
+      "customer_id": "CUST-2024-0847",
+      "status": "Expired",
+      "start_date": "2024-12-15",
+      "end_date": "2025-12-15",
+      "type": "Standard 1-Year"
+    },
+    {
+      "id": "WRN-2025-0847-02",
+      "device_id": "DEV-TX1000-B2201",
+      "customer_id": "CUST-2024-0847",
+      "status": "Active",
+      "start_date": "2025-06-20",
+      "end_date": "2026-06-20",
+      "type": "Standard 1-Year"
+    }
+  ],
+  "cases": [
+    {
+      "id": "CASE-2025-0312",
+      "customer_id": "CUST-2024-0847",
+      "device_id": "DEV-GX7500-A1847",
+      "subject": "Monitor flickering during gaming",
+      "status": "Resolved",
+      "creation_date": "2025-08-15",
+      "last_update_date": "2025-08-22",
+      "resolution": "Driver update + refresh rate reduced to 165Hz",
+      "interaction_log": [
+        {"date": "2025-08-15", "channel": "Chat", "summary": "Customer reported flickering at 240Hz."},
+        {"date": "2025-08-16", "channel": "Email", "summary": "Sent driver update link v45.2."},
+        {"date": "2025-08-22", "channel": "Email", "summary": "Customer confirmed issue resolved with new drivers."}
+      ]
+    },
+    {
+      "id": "CASE-2026-0891",
+      "customer_id": "CUST-2024-0847",
+      "device_id": "DEV-GX7500-A1847",
+      "subject": "Monitor flickering returned — same issue",
+      "status": "Open",
+      "creation_date": "2026-01-22",
+      "last_update_date": "2026-01-24",
+      "linked_case_id": "CASE-2025-0312",
+      "interaction_log": [
+        {"date": "2026-01-22", "channel": "Chat", "summary": "Issue returned after Windows update. Drivers are current."},
+        {"date": "2026-01-24", "channel": "Email", "summary": "Support requested video evidence. Hardware fault suspected."}
+      ]
+    }
+  ],
+  "historical_sessions": [
+    {
+      "session_id": "SESS-2025-0815",
+      "customer_id": "CUST-2024-0847",
+      "date": "2025-08-15 10:23:00",
+      "duration_minutes": 12,
+      "pages_visited_count": 5,
+      "primary_intent": "TROUBLESHOOTING",
+      "sentiment": "CAUTIOUS",
+      "outcome": "Created CASE-2025-0312",
+      "key_insight": "Methodical first visit; read KB article for 4m 20s before filing case",
+      "page_flow": ["/home", "/troubleshooting", "/troubleshooting/monitor", "/kb/screen-flickering", "/case/new"]
+    },
+    {
+      "session_id": "SESS-2026-0122",
+      "customer_id": "CUST-2024-0847",
+      "date": "2026-01-22 14:47:00",
+      "duration_minutes": 18,
+      "pages_visited_count": 8,
+      "primary_intent": "TROUBLESHOOTING",
+      "sentiment": "FRUSTRATED",
+      "outcome": "Created CASE-2026-0891",
+      "key_insight": "Revisited same KB articles with less dwell; checked warranty (expired); showed frustration signals",
+      "page_flow": ["/home", "/warranty", "/troubleshooting/monitor", "/kb/screen-flickering", "/kb/drivers", "/case/new"]
+    }
+  ],
+  "products": {
+    "gaming_laptops": [
+      {
+        "id": "PROD-GX7500",
+        "category": "Gaming Laptops",
+        "name": "GX-7500 Pro",
+        "tagline": "Esports dominance in a sleek frame.",
+        "price": 2499.99,
+        "specs": {"CPU": "Intel i9-14900HX", "GPU": "RTX 4080", "RAM": "32GB DDR5", "Screen": "16in 240Hz OLED"},
+        "stock_status": "In Stock"
+      },
+      {
+        "id": "PROD-GX8000",
+        "category": "Gaming Laptops",
+        "name": "GX-8000 Ultra",
+        "tagline": "Desktop replacement power.",
+        "price": 3299.99,
+        "specs": {"CPU": "Intel i9-14900HK", "GPU": "RTX 4090", "RAM": "64GB DDR5", "Screen": "18in 4K Mini-LED"},
+        "stock_status": "Low Stock"
+      }
+    ],
+    "workstations": [
+      {
+        "id": "PROD-WS5000",
+        "category": "Workstations",
+        "name": "WS-5000 Creator",
+        "tagline": "Render faster, create more.",
+        "price": 1899.99,
+        "specs": {"CPU": "AMD Ryzen 9", "GPU": "RTX 4000 Ada", "RAM": "32GB", "Screen": "16in 100% AdobeRGB"},
+        "stock_status": "In Stock"
+      },
+      {
+        "id": "PROD-WS6000",
+        "category": "Workstations",
+        "name": "WS-6000 Pro",
+        "tagline": "Server-grade power on the go.",
+        "price": 2799.99,
+        "specs": {"CPU": "Intel Xeon W", "GPU": "RTX 5000 Ada", "RAM": "128GB ECC", "Screen": "17in 4K"},
+        "stock_status": "In Stock"
+      }
+    ],
+    "office_laptops": [
+      {
+        "id": "PROD-OL3000",
+        "category": "Office Laptops",
+        "name": "OL-3000",
+        "tagline": "Reliable daily driver.",
+        "price": 899.99,
+        "specs": {"CPU": "Intel Core Ultra 5", "GPU": "Integrated", "RAM": "16GB", "Battery": "12 Hours"},
+        "stock_status": "In Stock"
+      },
+      {
+        "id": "PROD-OL3500",
+        "category": "Office Laptops",
+        "name": "OL-3500 Slim",
+        "tagline": "Featherlight productivity.",
+        "price": 1199.99,
+        "specs": {"CPU": "Intel Core Ultra 7", "GPU": "Integrated", "RAM": "16GB", "Weight": "0.98kg"},
+        "stock_status": "In Stock"
+      }
+    ],
+    "tablets": [
+      {
+        "id": "PROD-TX1000",
+        "category": "Tablets",
+        "name": "TX-1000",
+        "tagline": "Your digital notebook.",
+        "price": 749.98,
+        "specs": {"Chip": "M2-ProBook", "Storage": "256GB", "Screen": "11in Liquid Retina", "Pen": "Included"},
+        "stock_status": "In Stock"
+      },
+      {
+        "id": "PROD-TX2000",
+        "category": "Tablets",
+        "name": "TX-2000 Pro",
+        "tagline": "Replace your laptop.",
+        "price": 1099.99,
+        "specs": {"Chip": "M3-ProBook", "Storage": "512GB", "Screen": "13in OLED", "Keyboard": "Included"},
+        "stock_status": "In Stock"
+      }
+    ]
+  },
+  "kb_articles": {
+    "audio": [
+      {
+        "id": "KB-AUD-001",
+        "category": "Audio",
+        "title": "No Sound After Windows Update",
+        "difficulty": "Easy",
+        "est_time": "5 mins",
+        "content_steps": ["Open Device Manager.", "Find 'Realtek Audio' under Sound controllers.", "Right-click and select 'Roll Back Driver'.", "Restart your computer."]
+      },
+      {
+        "id": "KB-AUD-002",
+        "category": "Audio",
+        "title": "Bluetooth Audio Crackling",
+        "difficulty": "Medium",
+        "est_time": "10 mins",
+        "content_steps": ["Disable Bluetooth Absolute Volume in registry.", "Unpair and forget the device.", "Update Bluetooth drivers from the support page.", "Repair the device."]
+      },
+      {
+        "id": "KB-AUD-003",
+        "category": "Audio",
+        "title": "Microphone Not Detected",
+        "difficulty": "Easy",
+        "est_time": "3 mins",
+        "content_steps": ["Check Privacy Settings in Windows.", "Ensure 'Allow apps to access microphone' is On.", "Check physical mute switch on the laptop side."]
+      }
+    ],
+    "monitor": [
+      {
+        "id": "KB-MON-001",
+        "category": "Monitor",
+        "title": "Screen Flickering Fix",
+        "difficulty": "Medium",
+        "est_time": "15 mins",
+        "content_steps": ["Boot into Safe Mode to rule out hardware failure.", "Uninstall current Display Adapter drivers.", "Download 'ProBook Display Fix v2' from Downloads.", "Install and restart."]
+      },
+      {
+        "id": "KB-MON-002",
+        "category": "Monitor",
+        "title": "External Monitor Not Detected",
+        "difficulty": "Easy",
+        "est_time": "5 mins",
+        "content_steps": ["Use the HDMI 2.1 port for 4K output.", "Press Win+P to check projection settings.", "Try a different cable (ensure it is certified)."]
+      },
+      {
+        "id": "KB-MON-003",
+        "category": "Monitor",
+        "title": "Resolution & Scaling Guide",
+        "difficulty": "Easy",
+        "est_time": "5 mins",
+        "content_steps": ["Right-click desktop > Display Settings.", "Recommended scaling for 16in is 150%.", "For external 4K monitors, set to 100% for sharpest text."]
+      }
+    ],
+    "keyboard": [
+      {
+        "id": "KB-KEY-001",
+        "category": "Keyboard",
+        "title": "Keys Not Responding",
+        "difficulty": "Medium",
+        "est_time": "10 mins",
+        "content_steps": ["Clean under keys with compressed air.", "Uninstall 'Standard PS/2 Keyboard' in Device Manager.", "Restart to auto-reinstall drivers."]
+      },
+      {
+        "id": "KB-KEY-002",
+        "category": "Keyboard",
+        "title": "Backlight Not Working",
+        "difficulty": "Easy",
+        "est_time": "2 mins",
+        "content_steps": ["Press Fn + Spacebar to cycle brightness modes.", "Check ProBook Control Center app settings.", "Ensure 'Battery Saver' mode is off."]
+      },
+      {
+        "id": "KB-KEY-003",
+        "category": "Keyboard",
+        "title": "Function Key Reference",
+        "difficulty": "Info",
+        "est_time": "1 min",
+        "content_steps": ["F1: Mute", "F2/F3: Volume", "F4: Mic Mute", "F5/F6: Brightness", "F7: Project", "F8: Airplane Mode", "F9: Settings", "F10: Camera Kill Switch"]
+      }
+    ],
+    "battery": [
+      {
+        "id": "KB-BAT-001",
+        "category": "Battery",
+        "title": "Fast Battery Drain",
+        "difficulty": "Easy",
+        "est_time": "5 mins",
+        "content_steps": ["Check 'Battery Usage by App' in settings.", "Close high-drain background apps (Chrome, Games).", "Lower screen brightness to 50%."]
+      },
+      {
+        "id": "KB-BAT-002",
+        "category": "Battery",
+        "title": "Not Charging When Plugged In",
+        "difficulty": "Medium",
+        "est_time": "8 mins",
+        "content_steps": ["Check if 'Smart Charging' limits are set to 80% in BIOS.", "Inspect the charging port for debris.", "Try a different USB-C PD charger (min 65W)."]
+      },
+      {
+        "id": "KB-BAT-003",
+        "category": "Battery",
+        "title": "Battery Health & Cycle Count",
+        "difficulty": "Info",
+        "est_time": "3 mins",
+        "content_steps": ["Open Command Prompt as Admin.", "Type 'powercfg /batteryreport'.", "Open the generated HTML file to view capacity history."]
+      }
+    ]
+  }
+}

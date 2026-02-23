@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto">
+    <nav class="flex mb-6 text-sm text-gray-500">
+        <a href="/" class="hover:text-blue-600">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900 font-medium">{{ category_title }}</span>
+    </nav>
+
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ category_title }}</h1>
+    <p class="text-gray-500 mb-8">Professional grade hardware designed for performance.</p>
+
+    <div class="grid gap-8">
+        {% for product in products %}
+        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col md:flex-row hover:shadow-lg transition-shadow">
+            <div class="bg-gray-100 md:w-1/3 min-h-[200px] flex items-center justify-center text-gray-400 text-5xl">
+                {% if "Gaming" in product.category %}🎮{% elif "Tablet" in product.category %}📱{% else %}💻{% endif %}
+            </div>
+            
+            <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-2xl font-bold text-gray-900">{{ product.name }}</h2>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {% if product.stock_status == 'In Stock' %}bg-green-100 text-green-800{% else %}bg-yellow-100 text-yellow-800{% endif %}">
+                            {{ product.stock_status }}
+                        </span>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">{{ product.tagline }}</p>
+                    
+                    <div class="grid grid-cols-2 gap-y-2 gap-x-4 text-sm text-gray-600 mb-6">
+                        {% for key, val in product.specs.items() %}
+                        <div class="flex justify-between border-b border-gray-100 pb-1">
+                            <span class="font-medium text-gray-500">{{ key }}</span>
+                            <span>{{ val }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-2xl font-bold text-gray-900">${{ product.price }}</span>
+                    <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

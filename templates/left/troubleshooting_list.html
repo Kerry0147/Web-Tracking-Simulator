@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <nav class="flex mb-6 text-sm text-gray-500" 
+         hx-boost="true" 
+         hx-target="#main-content" 
+         hx-select="#main-content" 
+         hx-swap="outerHTML show:top">
+        <a href="/" class="hover:text-blue-600">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/troubleshooting" class="hover:text-blue-600">Troubleshooting</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900 font-medium">{{ category }}</span>
+    </nav>
+
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">{{ category }} Support Articles</h1>
+
+    <div class="space-y-4" 
+         hx-boost="true" 
+         hx-target="#main-content" 
+         hx-select="#main-content" 
+         hx-swap="outerHTML show:top">
+        
+        {% for article in articles %}
+        <a href="/troubleshooting/{{ category }}/{{ article.id }}" class="block bg-white p-6 rounded-xl border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all group">
+            <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-bold text-gray-900 group-hover:text-blue-600">{{ article.title }}</h3>
+                <span class="px-2 py-1 rounded text-xs font-medium 
+                    {% if article.difficulty == 'Easy' %}bg-green-100 text-green-800
+                    {% elif article.difficulty == 'Medium' %}bg-yellow-100 text-yellow-800
+                    {% else %}bg-gray-100 text-gray-800{% endif %}">
+                    {{ article.difficulty }}
+                </span>
+            </div>
+            <div class="flex items-center text-sm text-gray-500 gap-4">
+                <span class="flex items-center gap-1">⏱️ {{ article.est_time }} read</span>
+                <span class="flex items-center gap-1 text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">Read Guide &rarr;</span>
+            </div>
+        </a>
+        {% endfor %}
+        
+    </div> </div>
+{% endblock %}

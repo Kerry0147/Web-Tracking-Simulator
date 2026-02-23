@@ -1,0 +1,89 @@
+<div class="p-6 space-y-6" hx-ext="sse" sse-connect="/api/dashboard-stream">
+    
+    <div class="flex items-center justify-between mb-2">
+        <h2 class="text-sm uppercase tracking-widest text-slate-400 font-semibold">Live Analysis</h2>
+        <div class="flex items-center gap-2">
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
+            <span class="text-xs text-green-400 font-mono">ONLINE</span>
+        </div>
+    </div>
+
+    <!-- AI Mode Toggle -->
+    <div id="ai-mode-toggle" class="flex items-center justify-between bg-slate-800 rounded-lg px-4 py-2 border border-slate-700">
+        <div class="flex items-center gap-2">
+            <span id="mode-icon" class="text-sm">🔧</span>
+            <span id="mode-label" class="text-xs font-bold uppercase text-slate-300">Phase 1 — Rules</span>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="mode-switch" class="sr-only peer" onchange="toggleAIMode(this)">
+            <div class="w-9 h-5 bg-slate-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+            <span id="mode-badge" class="ms-2 text-[10px] font-mono text-slate-500">OFF</span>
+        </label>
+    </div>
+
+    <script>
+    // Initialize toggle state on page load
+    (async function initModeToggle() {
+        try {
+            const res = await fetch('/api/current-mode');
+            const data = await res.json();
+            const isPhase2 = data.mode === 'phase2';
+            const sw = document.getElementById('mode-switch');
+            sw.checked = isPhase2;
+            updateModeUI(isPhase2);
+        } catch(e) {}
+    })();
+
+    async function toggleAIMode(checkbox) {
+        const newMode = checkbox.checked ? 'phase2' : 'phase1';
+        updateModeUI(checkbox.checked);
+        try {
+            await fetch('/api/toggle-mode', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ mode: newMode })
+            });
+        } catch(e) {
+            console.error('Failed to toggle AI mode', e);
+            checkbox.checked = !checkbox.checked;
+            updateModeUI(checkbox.checked);
+        }
+    }
+
+    function updateModeUI(isPhase2) {
+        document.getElementById('mode-icon').textContent = isPhase2 ? '🧠' : '🔧';
+        document.getElementById('mode-label').textContent = isPhase2 ? 'Phase 2 — Claude AI' : 'Phase 1 — Rules';
+        document.getElementById('mode-label').className = isPhase2
+            ? 'text-xs font-bold uppercase text-blue-400'
+            : 'text-xs font-bold uppercase text-slate-300';
+        document.getElementById('mode-badge').textContent = isPhase2 ? 'AI' : 'OFF';
+        document.getElementById('mode-badge').className = isPhase2
+            ? 'ms-2 text-[10px] font-mono text-blue-400 font-bold'
+            : 'ms-2 text-[10px] font-mono text-slate-500';
+    }
+    </script>
+
+    <div sse-swap="nba-update">
+        {% include 'right/partials/nba_card.html' %}
+    </div>
+
+    <div sse-swap="vitals-update">
+        {% include 'right/partials/vitals.html' %}
+    </div>
+
+    <div sse-swap="categorization-update">
+        {% include 'right/partials/categorization.html' %}
+    </div>
+
+    <div sse-swap="timeline-update">
+        {% include 'right/partials/timeline.html' %}
+    </div>
+
+    <div sse-swap="history-update">
+        {% include 'right/partials/history.html' %}
+    </div>
+
+</div>

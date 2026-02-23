@@ -1,0 +1,71 @@
+<div id="vitals-card" class="bg-slate-800 rounded-lg p-4 border border-slate-700">
+    <h3 class="text-slate-400 text-xs font-bold uppercase mb-3 flex items-center gap-2">
+        <span>👤 Customer Vitals</span>
+    </h3>
+
+    {% if user %}
+    <div class="grid grid-cols-2 gap-y-3 mb-4 text-sm">
+        <div class="col-span-2 flex items-center gap-3 pb-3 border-b border-slate-700">
+            <div class="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white">
+                {{ user.customer.name[:2] }}
+            </div>
+            <div>
+                <div class="font-bold text-white">{{ user.customer.name }}</div>
+                <div class="text-xs text-slate-400">{{ user.customer.location }}</div>
+            </div>
+        </div>
+        
+        <div class="text-slate-400">Since</div>
+        <div class="text-white text-right">{{ user.customer.customer_since }}</div>
+        
+        <div class="text-slate-400">Tier</div>
+        <div class="text-yellow-400 text-right font-bold">⭐ {{ user.customer.tier }}</div>
+        
+        <div class="text-slate-400">LTV</div>
+        <div class="text-green-400 text-right">${{ user.customer.lifetime_value }}</div>
+    </div>
+    {% else %}
+    <div class="flex items-center gap-3 mb-4">
+        <div class="h-10 w-10 rounded-full bg-slate-700 flex items-center justify-center text-xl">?</div>
+        <div>
+            <div class="font-bold text-white">Anonymous Visitor</div>
+            <div class="text-xs text-slate-400">Guest Session</div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="space-y-2 mt-2">
+        <div class="flex justify-between text-xs text-slate-400 mb-1">
+            <span>Intent Propensity</span>
+            <span>%</span>
+        </div>
+        
+        {% for intent, score in classification.intent_scores.items()|sort(attribute='1', reverse=true) %}
+        {% if score > 0 %}
+        <div class="relative pt-1">
+            <div class="flex items-center justify-between text-[10px] text-slate-300 mb-0.5">
+                <span>
+                    {% if intent.value == 'TROUBLESHOOTING' %}🔧
+                    {% elif intent.value == 'WARRANTY_INQUIRY' %}🛡️
+                    {% elif intent.value == 'PURCHASE_SIGNAL' %}🛒
+                    {% elif intent.value == 'CASE_FOLLOW_UP' %}📋
+                    {% else %}👁️{% endif %}
+                    {{ intent.value }}
+                </span>
+                <span>{{ score }}%</span>
+            </div>
+            <div class="overflow-hidden h-1.5 text-xs flex rounded bg-slate-700">
+                <div style="width: {{ score }}%" 
+                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center 
+                    {% if intent.value == 'TROUBLESHOOTING' %}bg-blue-500
+                    {% elif intent.value == 'WARRANTY_INQUIRY' %}bg-purple-500
+                    {% elif intent.value == 'PURCHASE_SIGNAL' %}bg-green-500
+                    {% elif intent.value == 'CASE_FOLLOW_UP' %}bg-orange-500
+                    {% else %}bg-gray-500{% endif %}">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>

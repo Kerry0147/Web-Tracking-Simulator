@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="mb-12 text-center py-10 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Performance Meets Innovation</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Discover the latest in ProBook technology, from esports-grade gaming rigs to ultra-light office companions.</p>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Browse Products</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <a href="/products/gaming_laptops" class="group block p-6 bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md hover:border-blue-200 transition-all cursor-pointer">
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl">🎮</span>
+                <span class="text-xs font-semibold bg-gray-100 text-gray-600 px-2 py-1 rounded-md">2 Models</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 group-hover:text-blue-600">Gaming Laptops</h3>
+            <p class="text-sm text-gray-500 mt-2">High-refresh rate displays and RTX 40-series power.</p>
+            <div class="mt-4 text-blue-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                Explore <span aria-hidden="true">&rarr;</span>
+            </div>
+        </a>
+
+        <a href="/products/workstations" class="group block p-6 bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md hover:border-blue-200 transition-all cursor-pointer">
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl">💻</span>
+                <span class="text-xs font-semibold bg-gray-100 text-gray-600 px-2 py-1 rounded-md">2 Models</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 group-hover:text-blue-600">Workstations</h3>
+            <p class="text-sm text-gray-500 mt-2">ISV-certified power for creators and engineers.</p>
+            <div class="mt-4 text-blue-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                Explore <span aria-hidden="true">&rarr;</span>
+            </div>
+        </a>
+
+        <a href="/products/office_laptops" class="group block p-6 bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md hover:border-blue-200 transition-all cursor-pointer">
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl">📁</span>
+                <span class="text-xs font-semibold bg-gray-100 text-gray-600 px-2 py-1 rounded-md">2 Models</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 group-hover:text-blue-600">Office Laptops</h3>
+            <p class="text-sm text-gray-500 mt-2">All-day battery life for the modern professional.</p>
+            <div class="mt-4 text-blue-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                Explore <span aria-hidden="true">&rarr;</span>
+            </div>
+        </a>
+
+        <a href="/products/tablets" class="group block p-6 bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md hover:border-blue-200 transition-all cursor-pointer">
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl">📱</span>
+                <span class="text-xs font-semibold bg-gray-100 text-gray-600 px-2 py-1 rounded-md">2 Models</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 group-hover:text-blue-600">Tablets</h3>
+            <p class="text-sm text-gray-500 mt-2">Creativity unleashed with ProBook Pencil support.</p>
+            <div class="mt-4 text-blue-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                Explore <span aria-hidden="true">&rarr;</span>
+            </div>
+        </a>
+
+    </div>
+</div>
+{% endblock %}

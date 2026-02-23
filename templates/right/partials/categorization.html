@@ -1,0 +1,50 @@
+<div class="grid grid-cols-1 gap-3">
+    <div class="bg-slate-800 rounded-lg p-3 border border-slate-700">
+        <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+                <span class="text-lg">🏷️</span>
+                <span class="text-xs text-slate-400 uppercase font-bold">Segment</span>
+            </div>
+            <span class="px-2 py-0.5 rounded text-xs font-bold
+                {% if classification.segment.value == 'AT_RISK' %}bg-orange-900 text-orange-200 border border-orange-700
+                {% elif classification.segment.value == 'VIP' %}bg-purple-900 text-purple-200 border border-purple-700
+                {% elif classification.segment.value == 'NEW_VISITOR' %}bg-blue-900 text-blue-200
+                {% else %}bg-slate-700 text-slate-300{% endif %}">
+                {{ classification.segment.value }}
+            </span>
+        </div>
+        <p class="text-xs text-slate-400 leading-snug font-mono">{{ classification.insights.segment }}</p>
+    </div>
+
+    <div class="bg-slate-800 rounded-lg p-3 border border-slate-700">
+        <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+                <span class="text-lg">🎯</span>
+                <span class="text-xs text-slate-400 uppercase font-bold">Intent</span>
+            </div>
+            <span class="text-sm font-bold text-white">{{ classification.primary_intent.value }}</span>
+        </div>
+        <p class="text-xs text-slate-400 leading-snug font-mono">{{ classification.insights.intent }}</p>
+    </div>
+
+    <div class="bg-slate-800 rounded-lg p-3 border border-slate-700">
+        <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+                <span class="text-lg">
+                    {% if classification.sentiment.value == 'FRUSTRATED' %}😤
+                    {% elif classification.sentiment.value == 'CONFUSED' %}😕
+                    {% elif classification.sentiment.value == 'POSITIVE' %}😊
+                    {% else %}😐{% endif %}
+                </span>
+                <span class="text-xs text-slate-400 uppercase font-bold">Sentiment</span>
+            </div>
+            <span class="font-bold 
+                {% if classification.sentiment.value == 'FRUSTRATED' %}text-red-400
+                {% elif classification.sentiment.value == 'POSITIVE' %}text-green-400
+                {% else %}text-gray-300{% endif %}">
+                {{ classification.sentiment.value }}
+            </span>
+        </div>
+        <p class="text-xs text-slate-400 leading-snug font-mono">{{ classification.insights.sentiment }}</p>
+    </div>
+</div>

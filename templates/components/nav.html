@@ -1,0 +1,34 @@
+<nav class="sticky top-0 z-40 w-full bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between shadow-sm">
+    <div class="flex items-center gap-2">
+        <div class="bg-blue-600 text-white font-bold rounded-lg px-2 py-1 text-xl">PB</div>
+        <span class="text-xl font-bold tracking-tight text-gray-900">ProBook</span>
+    </div>
+
+    <div class="hidden md:flex space-x-8 text-sm font-medium">
+        <a href="/" class="hover:text-blue-600 transition-colors {% if page == 'home' %}text-blue-600{% else %}text-gray-500{% endif %}">Home</a>
+        <a href="/troubleshooting" class="hover:text-blue-600 transition-colors {% if page == 'troubleshooting' %}text-blue-600{% else %}text-gray-500{% endif %}">Troubleshooting</a>
+        <a href="/warranty" class="hover:text-blue-600 transition-colors {% if page == 'warranty' %}text-blue-600{% else %}text-gray-500{% endif %}">Warranty Check</a>
+        <a href="/case-status" class="hover:text-blue-600 transition-colors {% if page == 'case_status' %}text-blue-600{% else %}text-gray-500{% endif %}">Case Status</a>
+    </div>
+
+    <div id="auth-section">
+        {% if logged_in %}
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 text-sm font-medium text-gray-700">
+                <span class="h-8 w-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                    {{ user.customer.name[:2] }}
+                </span>
+                <span>{{ user.customer.name }}</span>
+            </div>
+            <button hx-post="/logout" hx-target="body" class="text-xs text-gray-400 hover:text-red-500">Sign Out</button>
+        </div>
+        {% else %}
+        <button onclick="document.getElementById('login-modal').classList.remove('hidden')" class="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-full transition-all border border-gray-200">
+            <span>Sign In</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+            </svg>
+        </button>
+        {% endif %}
+    </div>
+</nav>
