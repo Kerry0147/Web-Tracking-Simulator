@@ -1,0 +1,18 @@
+# Environment variables and secrets
+.env
+.env.*
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments (standard practice for Python)
+venv/
+.venv/
+env/
+
+# Temporary Excel/Office lock files
+~$*.xlsx
+*.tmp
