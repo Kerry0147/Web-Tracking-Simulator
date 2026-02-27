@@ -1,4 +1,4 @@
-# Project ECHO — PRD Phase 2 (AI-Powered Classification & Chat)
+# Web Tracking Simulator PRD Phase 2 (AI-Powered Classification & Chat)
 ## LLM Replacement for Hardcoded Outputs
 
 | Field | Value |
