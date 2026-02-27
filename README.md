@@ -35,5 +35,6 @@ It features a unique **Split-Screen Console** that makes the invisible logic of 
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/yourusername/project-echo.git](https://github.com/yourusername/project-echo.git)
-   cd project-echo
+   git clone [https://github.com/yourusername/web-tracking-simulator.git](https://github.com/yourusername/web-tracking-simulator.git)
+   cd web-tracking-simulator.git
+  
