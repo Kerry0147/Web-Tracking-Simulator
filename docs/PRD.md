@@ -1,4 +1,4 @@
-# Project ECHO — PRD v2.1 (Machine-Readable)
+# Web tracking simulator — PRD v2.1 (Machine-Readable)
 ## Customer Journey Tracking PoC
 
 | Field | Value |
@@ -16,7 +16,7 @@
 ## 1. Executive Summary
 
 ### 1.1 Objective
-Build a **"Glass Box" Proof of Concept (PoC)** that demonstrates real-time Customer Engagement Center (CEC) capabilities. The system mimics a high-end Predictive Engagement platform, showing how AI analyzes customer behavior on a website to predict intent, assign segments, and trigger proactive actions.
+Build a **"Glass Box" Proof of Concept (PoC)** that demonstrates real-time web tracking capabilities. The system mimics a high-end Predictive Engagement platform, showing how AI analyzes customer behavior on a website to predict intent, assign segments, and trigger proactive actions.
 
 ### 1.2 Key Differentiator
 A **Split-Screen Console** showing "Cause and Effect." As the user interacts with the mock customer portal (Left Pane), the Agent Dashboard (Right Pane) updates instantly with AI-driven insights. This makes the invisible visible — business leadership can see exactly how behavioral signals translate into actionable intelligence.
@@ -27,10 +27,6 @@ A **Split-Screen Console** showing "Cause and Effect." As the user interacts wit
 |-------|-------|-------------|
 | Phase 1 (Current) | Full UI + behavioral tracking + hardcoded AI outputs | All AI-generated text prefixed with `<Hard Code>`. Classification and scoring are rule-based (Section 4). Agent Skills return mock data. |
 | Phase 2 (Future) | Replace hardcoded outputs with Claude API calls | Real-time Claude API for insights, chat, classification, and recommendations. Rule engine (Section 4) replaced by `classify_behavior` skill (Section 5.2). |
-
-### 1.4 Industry Context
-This PoC is modeled after industry-leading Predictive Engagement platforms such as Genesys Predictive Engagement, which uses machine learning, dynamic segmentation, and real-time outcome scoring to identify the right moments for proactive customer engagement. The approach of pre-defining segments and outcomes as standardized categories, then using AI to score probabilities against those categories in real-time, is the established industry pattern.
-
 ---
 
 ## 2. User Interface Design: The Split-Screen Console
